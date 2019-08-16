@@ -34,7 +34,7 @@ export const http = axios.create({
 export function get(url,param){
     return http.get(url,{
         method:"get",
-        data:param
+        params:param
     })
 }
 

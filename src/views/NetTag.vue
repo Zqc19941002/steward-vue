@@ -8,9 +8,9 @@
         <div class="h-panel-body">
             <div class="common-filter-bar common-flex-between">
                 <div v-width="300">
-                    <Search placeholder="查询" v-width="200"></Search>
+                    <Search placeholder="查询" v-width="200" v-model="searchParams.title"></Search>
                     <i class="h-split"></i>
-                    <button class="h-btn h-btn-green h-btn-m">查询</button>
+                    <button class="h-btn h-btn-green h-btn-m" @click="searchByParams">查询</button>
                 </div>
                 <div>
                     <div class="buttons">
@@ -23,11 +23,9 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <Modal v-model="openModal" :closeOnMask="closeOnMask" hasCloseIcon>
-                <AddNetTagForm @handleFormClosed="handleFormClosed"></AddNetTagForm>
+                <AddNetTagForm @handleFormClosed="handleFormClosed" :net-info="netTagInfo"></AddNetTagForm>
             </Modal>
             <Table :loading="loading" :datas="datas" :checkbox="checkbox" @select="onTableSelect">
                 <TableItem :width="30" title="序号">
@@ -67,7 +65,9 @@
                 searchParams: {
                     title: '',
                     remark: '',
-                    theme: ''
+                    theme: '',
+                    page:'1',
+                    pageSize:'10'
                 },
                 deleteParams:{
                     tagId:''
@@ -75,21 +75,13 @@
                 batchesDeleteParams:{
                     selectDataId:[]
                 },
+                netTagInfo:{},
                 pagination: {
                     page: 1,
-                    size: 20,
+                    size: 10,
                     total: 0
                 },
-                tabs: [
-                    {key: 'China', title: 'Malawi'},
-                    {key: 'Niger', title: 'Niger'},
-                    {key: 'Curaçao', title: 'Curaçao'},
-                    {key: 'Korea', title: 'Korea'},
-                    {key: 'Malawi', title: 'Malawi'}
-                ],
-                type: 'China',
                 datas: [],
-                counts: {},
                 loading: false,
                 openModal: false,
                 closeOnMask:false,
@@ -101,36 +93,29 @@
         },
         methods: {
             init() {
-                this.initNetTagTable();
-                this.getCounts();
-            },
-            changePage() {
                 this.initNetTagTable(true);
             },
-            getCounts() {
-                setTimeout(() => {
-                    this.counts = {
-                        China: 900,
-                        Niger: 90,
-                        Curaçao: 20,
-                        Korea: 30,
-                        Malawi: 45
-                    };
-                }, 1000);
+            changePage() {
+                this.initNetTagTable(false);
             },
             initNetTagTable(reload = false) {
                 if (reload) {
                     this.pagination.page = 1;
+                }else{
+                    this.searchParams.page=this.pagination.page
                 }
                 this.loading = true;
                 queryNetTagPage(this.searchParams).then(res => {
-                    let netTagArr = res.data.body.result;
-                    this.datas = netTagArr
-                    this.pagination.total = 100;
+                    let result=res.data.body.result
+                    this.datas = result.list
+                    this.pagination.total = result.total;
                     this.loading = false;
                 }).catch(res => {
-                    alert("数据获取异常")
+                    this.$Notice["error"]('数据请求异常');
                 })
+            },
+            searchByParams(){
+                this.initNetTagTable(true)
             },
             handleDelete(datas, data) {
                 let _this=this;
@@ -148,10 +133,13 @@
 
                 });
             },
-            handleEdit() {
-
+            handleEdit(datas,data) {
+                this.netTagInfo=data;
+                this.netTagInfo.isEdit=true
+                this.openModal = true;
             },
             handleAdd() {
+                this.netTagInfo.isEdit=false
                 this.openModal = true;
             },
             refreshTable(){
