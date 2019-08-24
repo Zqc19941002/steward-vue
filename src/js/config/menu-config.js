@@ -17,17 +17,22 @@ const fullMenus = [
     },
     {
         title: '文件资料',
-        key: 'source',
+        key: 'FileData',
         icon: 'icon-folder'
     },
     {
         title: '笔记',
-        key: 'note',
+        key: 'Note',
         icon: 'h-icon-edit'
     },
     {
-        title: '代码集',
-        key: 'codeCollect',
+        title: 'MarkDown编辑器',
+        key: 'MarkDownEditor',
+        icon: 'h-icon-menu'
+    },
+    {
+        title: '代码编辑器',
+        key: 'Editor',
         icon: 'h-icon-menu'
     },
     {

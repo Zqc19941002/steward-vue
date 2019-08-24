@@ -31,8 +31,9 @@
 
 <script>
 import marked from 'marked';
-
+import CodeEditor from "../code-editor/CodeEditor";
 export default {
+  name:"MarkDownEdit",
   props: {
     value: String,
     readonly: {
@@ -64,6 +65,9 @@ export default {
     change() {
       this.$emit('input', this.editValue);
     }
+  },
+  components:{
+    CodeEditor
   }
 };
 </script>

@@ -39,6 +39,7 @@
     import store from '../../js/vuex/store';
     import {mapState} from 'vuex';
     import {fullMenuKeys, isAuthPage} from '../../js/config/menu-config';
+    import {queryDict,queryAccountInfo} from '../../js/request/dictReq.js'
 
     export default {
         data() {
@@ -68,48 +69,34 @@
             });
         },
         methods: {
-
-
             init() {
                 this.$Loading('加载中');
-                this.axios({
-                    method: "get",
-                    url: '/steward/account/info',
-                }).then((response) => {
-                        if (response.status===200){
-                            let accountInfo=response.data.body
-                            G.set('account', accountInfo);
-                            console.log(accountInfo);
-                            store.dispatch('updateAccount', accountInfo);
-                            this.initDict();
-                            this.initMenu();
-                        }
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-
-                // R.User.info().then(resp => {
-                //     if (resp.ok) {
-                //         resp.body.avatar = require('../../images/me.png');
-                //         G.set('account', resp.body);
-                //         console.log(resp.body)
-                //         store.dispatch('updateAccount', resp.body);
-                //         this.initDict();
-                //         this.initMenu();
-                //     }
-                // });
+                queryAccountInfo().then(res=>{
+                    if (res.data.errorCode === "0000") {
+                        let accountInfo = res.data.body
+                        G.set('account', accountInfo);
+                        console.log(accountInfo);
+                        store.dispatch('updateAccount', accountInfo);
+                        this.initDict();
+                        this.initMenu();
+                    }
+                }).catch(res=>{
+                    this.$Notice['error']('用户信息加载异常');
+                })
             },
             initDict() {
-                R.Dict.get().then(resp => {
-                    if (resp.ok) {
-                        let dicts = resp.body;
+                let _this=this;
+                queryDict().then(resp => {
+                    if (resp.data.errorCode==="0000") {
+                        let dicts = resp.data.body;
                         for (let dict of dicts) {
-                            HeyUI.addDict(dict.name, dict.data);
+                            HeyUI.addDict(dict.dictKey, dict.dictValue);
                         }
                     }
-                    this.loading = false;
-                    this.$Loading.close();
+                    _this.loading = false;
+                    _this.$Loading.close();
+                }).catch(res=>{
+                    _this.$Notice["error"]('字典数据请求异常');
                 });
             },
             updateLayoutConfig({key, value}) {

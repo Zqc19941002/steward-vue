@@ -158,7 +158,7 @@
         methods: {
             submit() {
                 // this.loading = true;
-                window.location = '/home';
+                this.$router.push("home")
                 // R.Login.login(Login.dispose(this.login)).then(resp => {
                 //   if (resp.ok) {
                 //       alert("cmnsdkjncij")

@@ -13,7 +13,7 @@
     vertical-align: middle;
   }
   .app-logo-icon {
-    background: url(../../images/logo.png);
+    background: url(../../../public/logo.jpg);
     background-size: contain;
     height: 26px;
     width: 26px;

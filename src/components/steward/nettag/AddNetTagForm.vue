@@ -150,7 +150,7 @@
 
                 }else{
                     this.disabled = false
-                    this.netInfo={}
+                    // this.netInfo={}
                     this.title="新增网络标签"
                 }
             },

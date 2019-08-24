@@ -9,23 +9,20 @@ import TableBasic from "./components/demo-components/table/basic"
 import TableSearch from "./components/demo-components/table/search"
 import account from "./components/demo-components/account/account"
 import NetTag from "./views/NetTag";
+import Editor from "./views/Editor";
+import MarkDownEditor from "./views/MarkDownEditor";
+import FileData from "./views/FileData";
 Vue.use(Router)
-
 export default new Router({
-    mode: 'history',
-    base: process.env.BASE_URL,
     routes: [
         {
             path: '/',
-            name: 'login',
+            name: 'index',
             component: index
         },
         {
             path: '/home',
             name:'home',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
             component: appHome,
             children:[
                 {
@@ -38,6 +35,11 @@ export default new Router({
                     path:"/netTag",
                     name:"NetTag",
                     component:NetTag
+                },
+                {
+                    path:"/FileData",
+                    name:"FileData",
+                    component:FileData
                 },
                 {
                     path:"/Icons",
@@ -59,6 +61,16 @@ export default new Router({
                     name:"AccountBasic",
                     component:account
                 },
+                {
+                    path:"/MarkDownEditor",
+                    name:"MarkDownEditor",
+                    component:MarkDownEditor
+                },
+                {
+                    path:"/Editor",
+                    name:"Editor",
+                    component:Editor
+                }
             ]
 
         }

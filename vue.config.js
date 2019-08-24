@@ -6,6 +6,7 @@ const axios = require('axios')
 
 
 module.exports = {
+    baseUrl:'/steward-vue/',
     pages: {
         index: {
             entry: 'src/main.js',
