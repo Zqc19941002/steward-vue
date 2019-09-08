@@ -1,8 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const globalVars = require('./src/css/var.js');
-const qs = require('qs')
-const axios = require('axios')
+// const qs = require('qs')
+// const axios = require('axios')
 
 
 module.exports = {
@@ -41,19 +41,5 @@ module.exports = {
                 R: [path.resolve(__dirname, 'src/js/common/request'), 'default']
             })
         ]
-    },
-    devServer: {
-        proxy: {
-            // 此处应该配置为开发服务器的后台地址
-            // 配置文档： https://cli.vuejs.org/zh/config/#devserver-proxy
-            '/steward': {
-                target: 'http://localhost:8085',
-                changeOrigin: true,
-                ws: true,
-                pathRewrite: {
-                    '^/steward': 'steward'
-                }
-            }
-        }
     }
 };

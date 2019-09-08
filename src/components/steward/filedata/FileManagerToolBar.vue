@@ -31,7 +31,7 @@
         name: "FileManagerToolBar",
         data() {
             return {
-                editable: false
+                editable: false,
             }
         },
         methods: {
@@ -49,22 +49,18 @@
                 }
             },
             createFile() {
-                let newFileInfo = {
-                    name: "新建文件",
-                    size: '0kB',
-                    fileNum: 0,
-                    remark: "",
-                    content: '',
-                    type: 'file',
-                    status: 1, //0，最近。1，全部
-                    typeCode: 'new-file',
-                    children: [],
-                    all:[]
+                let fileInfo = {
+                    name: "新文件",
+                    type: 'file'
                 }
-                this.$emit("createFile", newFileInfo)
+                this.$emit("createFile", fileInfo)
             },
             createFolder() {
-                alert(23445)
+                let folderInfo = {
+                    name:'新文件夹',
+                    type:'folder'
+                }
+                this.$emit("createFile", folderInfo)
             },
             setEditable(args) {
                 this.$emit("setEditable", args)

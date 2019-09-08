@@ -7,12 +7,10 @@
                 </div>
                 <div class="el-col-18" style="display:flex;justify-content: space-between">
                     <el-breadcrumb separator-class="el-icon-arrow-right">
-                        <el-breadcrumb-item>文件</el-breadcrumb-item>
-                        <el-breadcrumb-item>笔记</el-breadcrumb-item>
+                        <el-breadcrumb-item v-for="(crumb,index) in breadcrumb">{{crumb.crumbName}}</el-breadcrumb-item>
                     </el-breadcrumb>
-                    <FileManagerToolBar @setEditable="setEditable" @createFile="createFile"></FileManagerToolBar>
+                    <FileManagerToolBar @setEditable="setEditable" @createFile="createFileOrFolder"></FileManagerToolBar>
                 </div>
-
             </div>
         </div>
         <div class="h-panel-body">
@@ -31,11 +29,11 @@
                         <el-tab-pane v-for="(item,index) in fileData" :key="index" :label="item.typeLabel">
                             <div class="h-panel-body">
                                 <el-tabs v-model="activeName">
+                                    <el-tab-pane label="全部展示" name="second">
+                                        <AllFile :fileData="item.all" @refreshFileData="refreshFileData"></AllFile>
+                                    </el-tab-pane>
                                     <el-tab-pane label="最近查看" name="first">
                                         <RecentFile :fileData="item.recent"></RecentFile>
-                                    </el-tab-pane>
-                                    <el-tab-pane label="全部展示" name="second">
-                                        <AllFile :fileData="item.all"></AllFile>
                                     </el-tab-pane>
                                 </el-tabs>
                             </div>
@@ -50,6 +48,7 @@
     import RecentFile from "../components/steward/filedata/RecentFile";
     import AllFile from "../components/steward/filedata/AllFile";
     import FileManagerToolBar from "../components/steward/filedata/FileManagerToolBar";
+    import {saveFile,getFileList,getFileTypeList} from '../js/request/fileDataReq.js'
     export default {
         name: "FileData",
         watch: {
@@ -60,197 +59,108 @@
         data() {
             return {
                 tabPosition: 'right',
-                currentFileType: "笔记",
+                currentFileType: "",
                 editable: false,
                 activeName: "second",
-                fileData: [{
-                    typeLabel: "笔记",
-                    typeCode: "file-type-1",
-                    recent: [{
-                        name: "java编程",
-                        size: '3500kB',
-                        fileNum: 12,
-                        remark: "java高并发编程",
-                        content: '',
-                        type: 'folder',
-                        status: 1, //0，最近。1，全部
-                        typeCode: 'file-type-1',
-                        children: []
-                    }, {
-                        name: "常用快捷键",
-                        size: '500kB',
-                        fileNum: 5,
-                        remark: "idea快捷键",
-                        content: '',
-                        type: 'folder',
-                        status: 1, //0，最近。1，全部
-                        typeCode: 'file-type-1',
-                        status: 1,
-                        children: []
-                    }],
-                    all: [{
-                        name: "java编程",
-                        size: '3500kB',
-                        fileNum: 12,
-                        remark: "java高并发编程",
-                        content: '',
-                        type: 'folder',
-                        status: 1, //0，最近。1，全部
-                        typeCode: 'file-type-1',
-                        children: []
-                    }, {
-                        name: "常用快捷键",
-                        size: '500kB',
-                        fileNum: 5,
-                        remark: "idea快捷键",
-                        content: '',
-                        type: 'folder',
-                        status: 1, //0，最近。1，全部
-                        typeCode: 'file-type-1',
-                        children: []
-                    }]
-                }, {
-                    typeLabel: "收藏",
-                    typeCode: "file-type-2",
-                    recent: [{
-                        name: "java编程",
-                        size: '3500kB',
-                        fileNum: 12,
-                        remark: "java高并发编程",
-                        content: '',
-                        type: 'folder',
-                        status: 1, //0，最近。1，全部
-                        typeCode: 'file-type-1',
-                        children: []
-                    }, {
-                        name: "常用快捷键",
-                        size: '500kB',
-                        fileNum: 5,
-                        remark: "idea快捷键",
-                        content: '',
-                        type: 'folder',
-                        status: 1, //0，最近。1，全部
-                        typeCode: 'file-type-1',
-                        status: 1,
-                        children: []
-                    }],
-                    all: [{
-                        name: "java编程",
-                        size: '3500kB',
-                        fileNum: 12,
-                        remark: "java高并发编程",
-                        content: '',
-                        type: 'folder',
-                        status: 1, //0，最近。1，全部
-                        typeCode: 'file-type-1',
-                        children: []
-                    }, {
-                        name: "常用快捷键",
-                        size: '500kB',
-                        fileNum: 5,
-                        remark: "idea快捷键",
-                        content: '',
-                        type: 'folder',
-                        status: 1, //0，最近。1，全部
-                        typeCode: 'file-type-1',
-                        children: []
-                    }]
-                }, {
-                    typeLabel: "代码",
-                    typeCode: "file-type-3",
-                    recent: [{
-                        name: "java编程",
-                        size: '3500kB',
-                        fileNum: 12,
-                        remark: "java高并发编程",
-                        content: '',
-                        type: 'folder',
-                        status: 1, //0，最近。1，全部
-                        typeCode: 'file-type-1',
-                        children: []
-                    }, {
-                        name: "常用快捷键",
-                        size: '500kB',
-                        fileNum: 5,
-                        remark: "idea快捷键",
-                        content: '',
-                        type: 'folder',
-                        status: 1, //0，最近。1，全部
-                        typeCode: 'file-type-1',
-                        status: 1,
-                        children: []
-                    }],
-                    all: [{
-                        name: "java编程",
-                        size: '3500kB',
-                        fileNum: 12,
-                        remark: "java高并发编程",
-                        content: '',
-                        type: 'folder',
-                        status: 1, //0，最近。1，全部
-                        typeCode: 'file-type-1',
-                        children: [{
-                            name: "java编程",
-                            size: '3500kB',
-                            fileNum: 12,
-                            remark: "java高并发编程",
-                            content: '',
-                            type: 'folder',
-                            status: 1, //0，最近。1，全部
-                            typeCode: 'file-type-1',
-                            children: []
-                        }, {
-                            name: "常用快捷键",
-                            size: '500kB',
-                            fileNum: 5,
-                            remark: "idea快捷键",
-                            content: '',
-                            type: 'folder',
-                            status: 1, //0，最近。1，全部
-                            typeCode: 'file-type-1',
-                            status: 1,
-                            children: []
-                        }]
-                    }, {
-                        name: "常用快捷键",
-                        size: '500kB',
-                        fileNum: 5,
-                        remark: "idea快捷键",
-                        content: '',
-                        type: 'folder',
-                        status: 1, //0，最近。1，全部
-                        typeCode: 'file-type-1',
-                        children: []
-                    }]
-                }, {
-                    typeLabel: "随笔",
-                    typeCode: "file-type-4",
-                    recent: [],
-                    all: []
-                }],
+                fileData: [],
+                breadcrumb:[{
+                    crumbName:'文件',
+                    crumbId:'',
+                }]
 
             };
         },
         methods: {
             handleFileTabClick(args) {
                 this.currentFileType = args.label
-                this.initFileData()
+                let fileTypeId='';
+                let fileData=this.fileData;
+                for (let i = 0; i < fileData.length; i++) {
+                    if(args.label===fileData[i].typeLabel){
+                        fileTypeId=fileData[i].fileTypeId
+                        break;
+                    }
+                }
+                this.breadcrumb[1]={
+                    crumbName: this.currentFileType,
+                    crumbId:fileTypeId
+                }
             },
+            //初始化文件
             initFileData() {
-                alert(34)
+                let _this=this;
+                //获取文件类型
+                let typeParams={
+                    userId:"duanhong"
+                }
+                //获取文件类别及其文件，新增或者删除文件或者文件类别时重新加载
+                getFileTypeList(typeParams).then(res=>{
+                    if (res.data.errorCode==="0000"){
+                        _this.fileData=res.data.body
+                        //初始化更新面包屑
+                        if(_this.fileData.length>0&& _this.breadcrumb.length===1){
+                            _this.breadcrumb[1]={
+                                crumbName:_this.fileData[0].typeLabel,
+                                crumbId:_this.fileData[0].fileTypeId
+                            };
+                            _this.currentFileType=_this.fileData[0].typeLabel;
+                        }
+                        for (let i=0;i<_this.fileData.length;i++){
+                            let params={
+                                fileTypeId:_this.fileData[i].fileTypeId
+                            }
+                            //根据文件类别加载文件
+                            getFileList(params).then(res=>{
+                                if(res.data.errorCode==="0000"){
+                                    _this.fileData[i].all=res.data.body;
+                                }
+                            }).catch(function () {
+                                _this.$Notice['error'](_this.fileData[i].name+'的文件列表加载失败');
+                            })
+                        }
+                    }
+                }).catch(function () {
+                    _this.$Notice['error']('文件类目加载失败');
+                })
             },
+            //设置文件类别编辑开关
             setEditable(args) {
                 this.editable = args
             },
-            createFile(newFileInfo){
-                console.log(newFileInfo)
-                for (let i=0;i<this.fileData.length;i++){
-                    if (this.fileData[i].typeLabel===this.currentFileType){
-                        this.fileData[i].all.push(newFileInfo)
-                        console.log(this.fileData[i].all)
-                    }
+            createFileOrFolder(newFileInfo){
+                let _this=this;
+                let parentId=undefined;
+                if (this.breadcrumb.length>2){
+                    parentId=this.breadcrumb[this.breadcrumb.length-1].crumbId
                 }
+                let params={
+                    name:newFileInfo.name,
+                    fileTypeId:this.breadcrumb[1].crumbId,
+                    type:newFileInfo.type,
+                    userId:'duanhong',
+                    parentId:parentId
+
+                }
+                saveFile(params).then(res=>{
+                    if(res.data.errorCode==='0000'){
+                        _this.$Notice['success']('文件新增成功');
+                        _this.initFileData();
+                    }else {
+                        if(res.data.errorCode==='666666'){
+                            _this.$Notice['error']('('+newFileInfo.name+"）的文件已经存在");
+                        }
+                    }
+                }).catch(function () {
+                    _this.$Notice['success']('文件新增失败');
+                })
+            },
+            refreshFileData(){
+                this.initFileData()
             }
+
+        },
+        mounted:function(){
+            this.initFileData()
         },
         components: {
             RecentFile,
