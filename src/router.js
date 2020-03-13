@@ -12,7 +12,13 @@ import NetTag from "./views/NetTag";
 import Editor from "./views/Editor";
 import MarkDownEditor from "./views/MarkDownEditor";
 import FileData from "./views/FileData";
+import MapDemo from "./components/steward/map/MapDemo";
 Vue.use(Router)
+
+const routerPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+    return routerPush.call(this, location).catch(error=> error)
+}
 export default new Router({
     routes: [
         {
@@ -30,6 +36,11 @@ export default new Router({
                     name: 'Home',
                     component: appFrameIndex,
                     meta: { title: '首页', icon: 'icon-monitor' }
+                },
+                {
+                    path:"/mapDemo",
+                    name:"MapDemo",
+                    component:MapDemo
                 },
                 {
                     path:"/netTag",

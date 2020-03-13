@@ -11,6 +11,11 @@ const fullMenus = [
         icon: 'icon-paper'
     },
     {
+        title: '地图测试',
+        key: 'MapDemo',
+        icon: 'icon-paper'
+    },
+    {
         title: '常用标签',
         key: 'NetTag',
         icon: 'icon-tag'

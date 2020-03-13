@@ -33,7 +33,7 @@
 }
 </style>
 <template>
-  <div class="app-logo"><router-link to="/"><span class="app-logo-icon"></span><span class="app-logo-text">管家</span></router-link></div>
+  <div class="app-logo"><router-link to="/"><span class="app-logo-icon"></span><span class="app-logo-text">管理中心</span></router-link></div>
 </template>
 <script>
 export default {

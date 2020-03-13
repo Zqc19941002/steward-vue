@@ -8,8 +8,8 @@
             <div class="h-panel-body">
                 <Form :label-width="70" :mode="mode" :model="netTagFormData" :rules="netTagFormValidRules" ref="form"
                       :top="0.2" showErrorTip>
-                    <FormItem label="标题" prop="netTagTitle" required>
-                        <input type="text" v-model="netTagFormData.netTagTitle" placeholder="限制输入30个字"
+                    <FormItem label="标题" prop="tagTitle" required>
+                        <input type="text" v-model="netTagFormData.tagTitle" placeholder="限制输入30个字"
                                v-wordlimit='30' :disabled="disabled"/>
                         <template slot="error" slot-scope="props">
                             <!-- *type*: base, combine, async -->
@@ -45,7 +45,7 @@
             return {
                 mode: 'single',
                 netTagFormData: {
-                    netTagTitle: '',
+                    tagTitle: '',
                     tagPath: '',
                     tagRemark: ''
                 },
@@ -57,7 +57,7 @@
                         }
                     },
                     required: [
-                        'netTagTitle',
+                        'tagTitle',
                         'tagPath',
                     ],
                     url: ['tagPath']
@@ -142,7 +142,7 @@
                 this.isEdit=this.netInfo.isEdit
                 if (this.isEdit) {
                     this.disabled = true
-                    this.netTagFormData.netTagTitle = this.netInfo.netTagTitle;
+                    this.netTagFormData.tagTitle = this.netInfo.tagTitle;
                     this.netTagFormData.tagPath = this.netInfo.tagPath;
                     this.netTagFormData.tagRemark = this.netInfo.tagRemark;
                     this.netTagFormData.tagId=this.netInfo.tagId;

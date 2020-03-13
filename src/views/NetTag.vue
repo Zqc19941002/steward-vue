@@ -15,8 +15,9 @@
                 <div>
                     <div class="buttons">
                         <div class="h-btn-group">
-                            <button class="h-btn" @click="handleAdd"><i class="h-icon-plus"></i><span>新增</span>
-                            </button>
+                            <button class="h-btn" @click="handleAdd"><i class="h-icon-plus"></i><span>新增</span></button>
+                            <button class="h-btn" @click="handleImportWithExcel"><i class="h-icon-outbox"></i><span>文件导入</span></button>
+                            <button class="h-btn" @click="handleExportWithExcel"><i class="h-icon-inbox"></i><span>导出</span></button>
                             <button class="h-btn" @click="refreshTable"><i class="h-icon-refresh"></i><span>刷新</span></button>
                             <button class="h-btn" @click="deleteInBatches"><i class="h-icon-trash"></i><span>批量删除</span></button>
                             <button class="h-btn"><i class="h-icon-search"></i><span>高级查询</span></button>
@@ -31,7 +32,8 @@
                 <TableItem :width="30" title="序号">
                     <template slot-scope="{index}">{{index+1}}</template>
                 </TableItem>
-                <TableItem :width="80" prop="netTagTitle" title="标题"></TableItem>
+                <TableItem :width="50" prop="tagId" title="标签ID"></TableItem>
+                <TableItem :width="80" prop="tagTitle" title="标题"></TableItem>
                 <TableItem :width="250" title="路径">
                     <template slot-scope="{data}">
                         <a :href="data.tagPath" target="_blank">
@@ -56,6 +58,7 @@
 <script>
     import AddNetTagForm from "../components/steward/nettag/AddNetTagForm";
     import {queryNetTagPage,deleteNetTag,deleteNetTags} from "../js/request/netTagReq"
+    import {baseHttpUrl} from "../js/config/http-settings";
 
     export default {
         name: "NetTag",
@@ -141,6 +144,20 @@
             handleAdd() {
                 this.netTagInfo.isEdit=false
                 this.openModal = true;
+            },
+            handleImportWithExcel(){
+                this.$Confirm('确定删除下载模板?','下载模板').then(() => {
+                    window.location.href=baseHttpUrl+'/netTag/downLoadNetTagTem'
+                }).catch(() => {
+
+                });
+            },
+            handleExportWithExcel(){
+                this.$Confirm('确定导出标签数据?','导出标签数据').then(() => {
+                    alert("确定")
+                }).catch(() => {
+
+                });
             },
             refreshTable(){
                 this.initNetTagTable()

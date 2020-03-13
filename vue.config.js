@@ -23,6 +23,10 @@ module.exports = {
         }
     },
     configureWebpack: {
+        externals: {
+            "BMap": "BMap",
+            "BMapLib":"BMapLib"
+        },
         resolve: {
             alias: {
                 model: path.resolve(__dirname, 'src/js/model/'),

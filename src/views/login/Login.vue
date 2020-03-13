@@ -121,7 +121,7 @@
     <div class="login-vue">
         <div class="login-container">
             <div class="login-content">
-                <div class="login-title">管家</div>
+                <div class="login-title">管理中心</div>
                 <div class="login-name login-input">
                     <input type="text" name="username" v-model="login.username" autocomplete="off"/>
                     <span class="placeholder"
