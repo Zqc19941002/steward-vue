@@ -18,7 +18,7 @@ export default {
                 var drawIcon;
                 switch (type) {
                     case "rivalChl":
-                        drawIcon = new BMap.Icon("../../images/device-location-icon.png", new BMap.Size(100,100));
+                        drawIcon = new BMap.Icon("http://img.duanhong.top/device-location-icon.png", new BMap.Size(100,100));
                         break;
                     default :
                         break;
@@ -35,6 +35,7 @@ export default {
                 map.addOverlay(marker);
             }
         }
+
 
         //     $(drawObjList).each(function() {
         //         var drawObj=this;
