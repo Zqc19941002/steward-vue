@@ -1,3 +1,5 @@
+// 全局变量定义，提供给vue-cli
+
 const vars = require('heyui/themes/var.js');
 Object.assign(vars, {
   'primary-color': '#3788ee',

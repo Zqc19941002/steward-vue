@@ -1,0 +1,4 @@
+通用
+    - ajax / 封装axios
+    - request / 封装所有的请求
+    - utils / 通用方法
