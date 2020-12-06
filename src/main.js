@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from "./router";
-// import store from './store'
+import store from './store'
 import HeyUI from "heyui";
 import '@babel/polyfill';
 import "./js/vue/directives";
@@ -29,7 +29,7 @@ window.qs = qs
 window.axios = axios
 Vue.prototype.axios = axios;
 
-// const router=routerConfig()
+const router=routerConfig()
 new Vue({
   router,
   store,
