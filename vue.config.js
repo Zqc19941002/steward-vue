@@ -6,7 +6,7 @@ const globalVars = require('./src/css/var.js');
 
 
 module.exports = {
-    baseUrl:'/steward-vue/',
+    baseUrl:'/steward',
     pages: {
         index: {
             entry: 'src/main.js',
