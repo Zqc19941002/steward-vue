@@ -8,7 +8,7 @@
         <div class="h-panel-body">
             <div class="common-filter-bar common-flex-between">
                 <div v-width="300">
-                    <Search placeholder="查询" v-width="200" v-model="searchParams.title"></Search>
+                    <Search placeholder="查询" v-width="200" v-model="searchParams.title" position="front" trigger-type="input" @search="searchByParams"></Search>
                     <i class="h-split"></i>
                     <button class="h-btn h-btn-green h-btn-m" @click="searchByParams">查询</button>
                 </div>
@@ -16,11 +16,13 @@
                     <div class="buttons">
                         <div class="h-btn-group">
                             <button class="h-btn" @click="handleAdd"><i class="h-icon-plus"></i><span>新增</span></button>
-                            <button class="h-btn" @click="handleImportWithExcel"><i class="h-icon-outbox"></i><span>文件导入</span></button>
+                            <button class="h-btn" @click="handleImportWithExcel"><i class="h-icon-inbox"></i><span>文件导入模板</span></button>
+                            <button class="h-btn" @click="handleUploadWithExcel"><i class="h-icon-outbox"></i><span>导入</span></button>
                             <button class="h-btn" @click="handleExportWithExcel"><i class="h-icon-inbox"></i><span>导出</span></button>
                             <button class="h-btn" @click="refreshTable"><i class="h-icon-refresh"></i><span>刷新</span></button>
+                            <button class="h-btn" @click="addNetGroup"><i class="el-icon-connection"></i><span>添加分组</span></button>
                             <button class="h-btn" @click="deleteInBatches"><i class="h-icon-trash"></i><span>批量删除</span></button>
-                            <button class="h-btn"><i class="h-icon-search"></i><span>高级查询</span></button>
+<!--                            <button class="h-btn"><i class="h-icon-search"></i><span>高级查询</span></button>-->
                         </div>
                     </div>
                 </div>
@@ -36,9 +38,7 @@
                 <TableItem :width="80" prop="tagTitle" title="标题"></TableItem>
                 <TableItem :width="250" title="路径">
                     <template slot-scope="{data}">
-                        <a :href="data.tagPath" target="_blank">
-                            {{data.tagPath}}
-                        </a>
+                        <a :href="data.tagPath" target="_blank">{{data.tagPath}}</a>
                     </template>
                 </TableItem>
                 <TableItem :width="220" prop="tagRemark" title="备注"></TableItem>
@@ -98,6 +98,9 @@
             init() {
                 this.initNetTagTable(true);
             },
+            addNetGroup(){
+
+            },
             changePage() {
                 this.initNetTagTable(false);
             },
@@ -146,11 +149,14 @@
                 this.openModal = true;
             },
             handleImportWithExcel(){
-                this.$Confirm('确定删除下载模板?','下载模板').then(() => {
+                this.$Confirm('确定下载模板?','下载模板').then(() => {
                     window.location.href=baseHttpUrl+'/netTag/downLoadNetTagTem'
                 }).catch(() => {
 
                 });
+            },
+            handleUploadWithExcel(){
+
             },
             handleExportWithExcel(){
                 this.$Confirm('确定导出标签数据?','导出标签数据').then(() => {

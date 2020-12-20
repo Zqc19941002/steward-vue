@@ -158,7 +158,7 @@ export default {
       window.dispatchEvent(new Event('resize'));
     },
     goGithub() {
-      window.open('https://github.com/heyui/heyui-admin');
+      window.open('https://github.com/duan-hong/');
     },
     goBook() {
       window.open('https://heyui.github.io/heyui-admin-docs');

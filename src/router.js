@@ -15,6 +15,11 @@ import MarkDownEditor from "./views/MarkDownEditor";
 import FileData from "./views/FileData";
 import MapDemo from "./components/steward/map/MapDemo";
 import RichEdit from "./views/richtext-editor"
+
+
+/*sys菜单*/
+import stewMenuManage from "./views/sys/stewMenuManage";
+
 Vue.use(Router)
 
 const routerPush = Router.prototype.push
@@ -92,6 +97,11 @@ export default new Router({
                     path:"/Editor",
                     name:"Editor",
                     component:Editor
+                },
+                {
+                    path: "/sys/stewMenuManage",
+                    name: "stewMenuManage",
+                    component: stewMenuManage
                 }
             ]
 

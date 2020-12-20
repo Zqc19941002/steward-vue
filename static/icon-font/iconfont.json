@@ -1,0 +1,72 @@
+{
+  "id": "2265264",
+  "name": "steward",
+  "font_family": "iconfont",
+  "css_prefix_text": "stew-",
+  "description": "steward-管家",
+  "glyphs": [
+    {
+      "icon_id": "4608918",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "14435324",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "4111811",
+      "name": "代码",
+      "font_class": "code",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "2678581",
+      "name": "常用示例",
+      "font_class": "changyongshili",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "2678603",
+      "name": "工作计划",
+      "font_class": "gongzuojihua",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "4294083",
+      "name": "标签",
+      "font_class": "biaoqian",
+      "unicode": "e78b",
+      "unicode_decimal": 59275
+    },
+    {
+      "icon_id": "4553742",
+      "name": "文件",
+      "font_class": "wenjian",
+      "unicode": "e7e0",
+      "unicode_decimal": 59360
+    },
+    {
+      "icon_id": "15112683",
+      "name": "账本",
+      "font_class": "zhangben",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "16385692",
+      "name": "笔记",
+      "font_class": "biaoqianA01_biji-99",
+      "unicode": "eada",
+      "unicode_decimal": 60122
+    }
+  ]
+}

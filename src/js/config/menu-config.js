@@ -2,15 +2,15 @@ const fullMenus = [
     {
         title: '首页',
         key: 'Home',
-        icon: 'h-icon-home',
+        icon: 'iconfont stew-shouye',
         count: 1
     },
     {
         title: '小账本',
         key: 'TableSearch',
-        icon: 'icon-paper'
+        icon: 'iconfont stew-zhangben'
     },
-    {
+    /*{
         title: '地图测试',
         key: 'MapDemo',
         icon: 'icon-paper'
@@ -20,45 +20,68 @@ const fullMenus = [
         key: 'RichEdit',
         icon: 'icon-paper'
     },
-    {
-        title: '常用标签',
-        key: 'NetTag',
-        icon: 'icon-tag'
-    },
-    {
-        title: '工作计划',
-        key: 'WorkPlan',
-        icon: 'icon-tag'
-    },
-    {
-        title: '文件资料',
-        key: 'FileData',
-        icon: 'icon-folder'
-    },
-    {
-        title: '笔记',
-        key: 'Note',
-        icon: 'h-icon-edit'
-    },
+
+
+
     {
         title: 'MarkDown编辑器',
         key: 'MarkDownEditor',
         icon: 'h-icon-menu'
     },
+*/
     {
-        title: '代码编辑器',
-        key: 'Editor',
-        icon: 'h-icon-menu'
-    },
-    {
-        title: '其他服务',
-        key: 'others',
-        icon: 'icon-bar-graph-2',
+        title: '常用工具',
+        key: 'tools',
+        icon: 'iconfont stew-changyongshili',
         children:[
             {
-                title:"待定",
-                key:"standby"
-            }
+                title: '常用标签',
+                key: 'NetTag',
+                icon: 'iconfont stew-biaoqian'
+            },
+            {
+                title: '工作计划',
+                key: 'WorkPlan',
+                icon: 'iconfont stew-gongzuojihua'
+            },
+            {
+                title: '笔记',
+                key: 'Note',
+                icon: 'iconfont stew-biaoqianA01_biji-99'
+            },
+            {
+                title: '文件资料',
+                key: 'FileData',
+                icon: 'iconfont stew-wenjian'
+            },
+            {
+                title: '代码编辑器',
+                key: 'Editor',
+                icon: 'iconfont stew-code'
+            },
+        ]
+
+    },
+    {
+        title: '系统设置',
+        key: 'others',
+        icon: 'iconfont stew-shezhi',
+        children:[
+            {
+                title: '菜单',
+                key: 'stewMenuManage',
+                icon: 'h-icon-menu'
+            },
+            {
+                title: '用户',
+                key: 'sysUsers',
+                icon: 'h-icon-users'
+            },
+            {
+                title: '角色',
+                key: 'sysRoles',
+                icon: 'h-icon-user'
+            },
         ]
     },
     // {
