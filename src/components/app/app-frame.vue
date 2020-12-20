@@ -68,6 +68,7 @@
                 G.removelistener(listener);
             });
         },
+
         methods: {
             init() {
                 this.$Loading('加载中');

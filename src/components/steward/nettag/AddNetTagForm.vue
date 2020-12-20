@@ -16,9 +16,7 @@
                             <span class="link" v-if="props.type == 'async'" @click="open">标题字数超过30个</span>
                         </template>
                     </FormItem>
-                    <!--
-                        这里定义的required属性同样适用与验证规则中。
-                       -->
+                    <!--这里定义的required属性同样适用与验证规则中。-->
                     <FormItem label="路径" prop="tagPath" required>
                         <input type="text" v-model="netTagFormData.tagPath" :disabled="disabled"/>
                     </FormItem>

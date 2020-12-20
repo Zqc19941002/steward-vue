@@ -16,6 +16,7 @@ import routerConfig from './js/config/router-config'
 import ElementUI from "element-ui"
 import 'element-ui/lib/theme-chalk/reset.css'
 import 'element-ui/lib/theme-chalk/index.css'
+import '../static/icon-font/iconfont.css'
 
 Vue.config.productionTip = false
 require('./css/app.less');
@@ -29,7 +30,7 @@ window.qs = qs
 window.axios = axios
 Vue.prototype.axios = axios;
 
-// const router=routerConfig()
+//const router=routerConfig()
 new Vue({
   router,
   store,

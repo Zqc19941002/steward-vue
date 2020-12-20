@@ -137,7 +137,7 @@
                     <Button :loading="loading" block color="primary" size="l" @click="submit">登录</Button>
                 </div>
             </div>
-            <p class="copyright"> Copyright © 2019 vvpvvp - <a href="https://www.heyui.top/">heyui.top</a></p>
+            <p class="copyright"> Copyright © 陕ICP备2020018278号  - <a href="https://www.october2.top/">www.october2.top</a></p>
         </div>
     </div>
 </template>
