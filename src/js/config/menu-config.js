@@ -45,17 +45,17 @@ const fullMenus = [
                 icon: 'iconfont stew-gongzuojihua'
             },
             {
-                title: '笔记',
-                key: 'Note',
-                icon: 'iconfont stew-biaoqianA01_biji-99'
-            },
-            {
                 title: '文件资料',
                 key: 'FileData',
                 icon: 'iconfont stew-wenjian'
             },
             {
-                title: '代码编辑器',
+                title: '笔记',
+                key: 'MarkDownEditor',
+                icon: 'iconfont stew-biaoqianA01_biji-99'
+            },
+            {
+                title: '代码收集',
                 key: 'Editor',
                 icon: 'iconfont stew-code'
             },
