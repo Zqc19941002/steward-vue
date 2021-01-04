@@ -19,3 +19,11 @@ export function deleteNetTags(params) {
 export function updateNetTag(params) {
     return put("/netTag/updateNetTag",params)
 }
+
+export function flagAsCommonNetTag(params) {
+    return put("/netTag/flagAsCommonNetTag",params)
+}
+
+export function getCommonNetTag(params) {
+    return get("/netTag/getCommonNetTag",params)
+}
