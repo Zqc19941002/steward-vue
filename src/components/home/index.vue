@@ -34,7 +34,7 @@
   <div class="app-home-vue frame-page">
     <Row :space="30">
       <Cell :xs='24' :sm='24' :md='24' :lg='16' :xl='16'>
-        <div class="h-panel">
+        <!--<div class="h-panel">
           <div class="relative">
             <Tabs class="common-panel-tabs" v-model="type" :datas="{type1: '数据走势', type2: '数据分布'}"></Tabs>
             <div class="middle-right" style="right: 25px;"><span class="text-hover" @click="openMore">查看更多</span></div>
@@ -43,13 +43,43 @@
             <Chart :options="data1" v-if="type=='type1'" key="type1"></Chart>
             <Chart :options="data3" v-if="type=='type2'" key="type2"></Chart>
           </div>
+        </div>-->
+
+
+        <div class="h-panel">
+          <div class="h-panel-bar">
+            <div class="h-panel-title">常用标签</div>
+            <div class="h-panel-right"><span class="gray-color">共有</span><i class="h-split"></i><span class="font20 primary-color">5</span><i class="h-split"></i><span class="gray-color">个常用标签</span></div>
+          </div>
+          <div class="h-panel-body">
+            <el-table
+                    :data="tableData"
+                    style="width: 100%"
+                    max-height="320"
+            >
+              <el-table-column
+                      prop="date"
+                      label="日期"
+                      width="180">
+              </el-table-column>
+              <el-table-column
+                      prop="name"
+                      label="姓名"
+                      width="180">
+              </el-table-column>
+              <el-table-column
+                      prop="address"
+                      label="地址">
+              </el-table-column>
+            </el-table>
+          </div>
         </div>
       </Cell>
       <Cell :xs='24' :sm='24' :md='24' :lg='8' :xl='8'>
         <div class="h-panel">
           <div class="h-panel-bar">
-            <div class="h-panel-title">常用标签</div>
-            <div class="h-panel-right"><span class="gray-color">共有</span><i class="h-split"></i><span class="font20 primary-color">5</span><i class="h-split"></i><span class="gray-color">个常用标签</span></div>
+            <div class="h-panel-title">小账本</div>
+            <div class="h-panel-right">最近支出记录</div>
           </div>
           <div class="h-panel-body progress-div home-part-body">
 
@@ -122,7 +152,40 @@ export default {
       data1,
       data2,
       data3,
-      type: 'type1'
+      type: 'type1',
+      tableData: [{
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      }]
     };
   },
   methods: {

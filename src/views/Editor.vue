@@ -32,7 +32,7 @@
                     ' */',
                 mode: 'java',
                 readOnly:false,
-                theme:'dracula',
+                theme:'github',
                 fontSize:14,
                 isShowFileManager:true
             };

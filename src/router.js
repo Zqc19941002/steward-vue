@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import index from "components/login/index";
 import appHome from "components/app/app-frame"
-import appFrameIndex from "components/home/index"
+import appFrameIndex from "components/steward/home/index"
 import Icons from "components/demo-components/icons"
 import TableBasic from "./components/demo-components/table/basic"
 import TableSearch from "./components/demo-components/table/search"

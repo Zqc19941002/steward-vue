@@ -35,7 +35,12 @@
                     <template slot-scope="{index}">{{index+1}}</template>
                 </TableItem>
                 <TableItem :width="50" prop="tagId" title="标签ID"></TableItem>
-                <TableItem :width="80" prop="tagTitle" title="标题"></TableItem>
+                <TableItem :width="100" title="标题">
+                    <template slot-scope="{data}">
+                        <span class="h-tag h-tag-yellow" v-if="data.state=='2'">{{data.tagTitle}}</span>
+                        <span v-if="data.state=='1'">{{data.tagTitle}}</span>
+                    </template>
+                </TableItem>
                 <TableItem :width="250" title="路径">
                     <template slot-scope="{data}">
                         <a :href="data.tagPath" target="_blank">{{data.tagPath}}</a>
@@ -47,6 +52,8 @@
                         <span class="text-hover h-icon-trash" @click="handleDelete(datas,data)"></span>
                         &nbsp;&nbsp;
                         <span class="text-hover h-icon-edit" @click="handleEdit(datas,data)"></span>
+                        &nbsp;&nbsp;
+                        <span :class="data.state=='2'?'text-hover h-icon-star-on':'text-hover h-icon-star'" @click="flagAsCommon(datas,data)"></span>
                     </template>
                 </TableItem>
             </Table>
@@ -57,7 +64,7 @@
 </template>
 <script>
     import AddNetTagForm from "../components/steward/nettag/AddNetTagForm";
-    import {queryNetTagPage,deleteNetTag,deleteNetTags} from "../js/request/netTagReq"
+    import {queryNetTagPage,deleteNetTag,deleteNetTags,flagAsCommonNetTag} from "../js/request/netTagReq"
     import {baseHttpUrl} from "../js/config/http-settings";
 
     export default {
@@ -143,6 +150,28 @@
                 this.netTagInfo=data;
                 this.netTagInfo.isEdit=true
                 this.openModal = true;
+            },
+            flagAsCommon(datas,data){
+                let _this=this;
+                let params={
+                    tagId:data.tagId,
+                    state:''
+                }
+                if (data.state=='1'){
+                    params.state='2'
+                }else if (data.state=='2'){
+                    params.state='1'
+                }
+                flagAsCommonNetTag(params).then(res=>{
+                    if(res.data.errorCode==="0000"){
+                        if (data.state=='1'){
+                            _this.$Notice["success"]('【'+data.tagTitle+'】被标记为常用标签');
+                        }else if (data.state=='2'){
+                            _this.$Notice["success"]('【'+data.tagTitle+'】从常用标签中取消');
+                        }
+                        _this.initNetTagTable()
+                    }
+                })
             },
             handleAdd() {
                 this.netTagInfo.isEdit=false
