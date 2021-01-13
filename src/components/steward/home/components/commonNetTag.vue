@@ -38,8 +38,9 @@
                     </el-table-column>
                 </el-table>
                 <el-pagination
-                        :hide-on-single-page="true"
+                        :hide-on-single-page="false"
                         :total="total"
+                        :page-size="queryParams.pageSize"
                         layout="prev, pager, next"
                         @current-change="handlePageChange"
                 >
