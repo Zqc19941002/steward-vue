@@ -4,6 +4,8 @@ import router from "./router";
 // import store from './store'
 import HeyUI from "heyui";
 import { FullCalendar } from 'vue-full-calendar'
+import VueSocialChat from 'vue-social-chat'
+import ChatWindow from 'vue-advanced-chat'
 import '@babel/polyfill';
 import "./js/vue/directives";
 import "./js/vue/filters";
@@ -19,6 +21,7 @@ import 'element-ui/lib/theme-chalk/reset.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import "fullcalendar/dist/fullcalendar.css"
 import '../static/icon-font/iconfont.css'
+import 'vue-advanced-chat/dist/vue-advanced-chat.css'
 
 Vue.config.productionTip = false
 require('./css/app.less');
@@ -27,6 +30,9 @@ Vue.use(HeyUI)
 Vue.use(ElementUI)
 Vue.use(qiniu)
 Vue.use(FullCalendar)
+Vue.use(VueSocialChat)
+Vue.use(ChatWindow)
+
 heyuiConfig()
 
 window.qs = qs

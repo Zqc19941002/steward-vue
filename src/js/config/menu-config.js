@@ -59,6 +59,11 @@ const fullMenus = [
                 key: 'Editor',
                 icon: 'iconfont stew-code'
             },
+            {
+                title: '聊天助手',
+                key: 'ChatHelper',
+                icon: 'iconfont stew-code'
+            },
         ]
 
     },

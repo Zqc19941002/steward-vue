@@ -10,6 +10,7 @@ import TableSearch from "./components/demo-components/table/search"
 import account from "./components/demo-components/account/account"
 import NetTag from "./views/NetTag";
 import WorkPlan from "./views/WorkPlan"
+import ChatHelper from "./views/ChatHelper"
 import Editor from "./views/Editor";
 import MarkDownEditor from "./views/MarkDownEditor";
 import FileData from "./views/FileData";
@@ -62,6 +63,11 @@ export default new Router({
                     path:"/workPlan",
                     name:"WorkPlan",
                     component:WorkPlan
+                },
+                {
+                    path:"/chatHelper",
+                    name:"ChatHelper",
+                    component:ChatHelper
                 },
                 {
                     path:"/FileData",
