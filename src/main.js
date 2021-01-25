@@ -39,6 +39,18 @@ window.qs = qs
 window.axios = axios
 Vue.prototype.axios = axios;
 
+/**
+ * 数组删除元素
+ * @param val
+ */
+Array.prototype.remove = function(val) {
+  var index = this.indexOf(val);
+  if (index > -1) {
+    this.splice(index, 1);
+  }
+};
+
+
 //const router=routerConfig()
 new Vue({
   router,

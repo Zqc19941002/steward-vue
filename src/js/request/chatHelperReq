@@ -1,0 +1,9 @@
+import {get,post,dele,put} from "../common/http.js"
+
+export function addChatRoom(params) {
+    return post("/chatRoom/add",params);
+}
+
+export function queryChatRoom(params) {
+    return get("/chatRoom/list",params);
+}

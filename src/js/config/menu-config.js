@@ -62,7 +62,7 @@ const fullMenus = [
             {
                 title: '聊天助手',
                 key: 'ChatHelper',
-                icon: 'iconfont stew-code'
+                icon: 'iconfont stew-liaotian'
             },
         ]
 

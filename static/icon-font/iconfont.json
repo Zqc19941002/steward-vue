@@ -6,6 +6,13 @@
   "description": "steward-管家",
   "glyphs": [
     {
+      "icon_id": "8493434",
+      "name": "聊天",
+      "font_class": "liaotian",
+      "unicode": "e686",
+      "unicode_decimal": 59014
+    },
+    {
       "icon_id": "4608918",
       "name": "设置",
       "font_class": "shezhi",
